@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Course = require("./course");
 const path = require("path");
 const userSchema = new mongoose.Schema(
   {
@@ -11,10 +12,26 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    name: {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    email: {
       type: String,
       required: true,
     },
+    courses: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Course",
+      },
+    ],
   },
   {
     timestamps: true,
